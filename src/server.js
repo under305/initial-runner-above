@@ -44,6 +44,7 @@ app.use(flash());
  */
 app.use((req, res, next)=>{
     res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
     next();
 })
 
@@ -52,6 +53,7 @@ app.use((req, res, next)=>{
  */
 app.use(require('./routes/index.routes'));
 app.use(require('./routes/images.router'));
+app.use(require('./routes/users.router'));
 
 /**
  ** Static files
