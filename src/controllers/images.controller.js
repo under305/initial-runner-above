@@ -34,7 +34,8 @@ imagesCtrl.createNewImage = (req, res) =>{
         }else{
             const newImage = new Image({
                 title: name,
-                imageURL: process.env.SERVER+'/images/'+fullname
+                imageURL: process.env.SERVER+'/images/'+fullname,
+                user: req.user.id
             });
             await newImage.save();
             req.flash('success_msg', 'Image uploaded successfuly');
@@ -46,7 +47,7 @@ imagesCtrl.createNewImage = (req, res) =>{
 }
 
 imagesCtrl.renderImages = async (req, res) =>{
-    const images = await Image.find().lean();
+    const images = await Image.find({user: req.user.id}).lean();
     
     res.render('imagesFiles/all-images.hbs', {images});
 }

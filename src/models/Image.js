@@ -5,10 +5,13 @@ const ImageSchema = new Schema({
         type: String,
         required: true
     },
-    
     imageURL: {
         type: String,
-        require: true
+        required: true
+    },
+    user:{
+        type: String,
+        required: true
     }
 }, {
     timestamps: true

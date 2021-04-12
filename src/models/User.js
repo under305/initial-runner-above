@@ -9,6 +9,10 @@ const User = new Schema({
     password: {
         type: String,
         require: true
+    },
+    receivedImages: {
+        type: [String],
+        default: []
     }
 });
 

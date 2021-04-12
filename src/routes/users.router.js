@@ -6,7 +6,8 @@ const {
     renderSignUpForm,
     signIn,
     signUp,
-    logOut
+    logOut,
+    updateList
 } = require('./../controllers/users.controller');
 
 router.get('/users/signup', renderSignUpForm);
@@ -16,5 +17,7 @@ router.get('/users/signin/', renderSignInForm);
 router.post('/users/signin/', signIn);
 
 router.get('/users/logout', logOut);
+
+router.post('/user/updatelist',updateList);
 
 module.exports = router;

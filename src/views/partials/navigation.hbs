@@ -15,19 +15,28 @@
                         <a class="nav-link" href="/about">About</a>
                     </li>
                 </ul>
+
                 <ul class="navbar-nav ml-auto">
+                    {{#if user}}
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link drop-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                            Images
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+                            <a href="/images" class="dropdown-item">All images</a>
+                            <a href="/images/new-image" class="dropdown-item">Upload Image</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="/users/logout" class="dropdown-item">Logout</a>
+                        </div>
+                    </li>
+                    {{else}}
                     <li class="nav-item">
                         <a class="nav-link" href="/users/signin">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/users/signup">Sign Up</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/images/new-image">Upload Imag</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/images">Wath Images</a>
-                    </li>
+                    {{/if}}
                 </ul>
             </div>
         </div>

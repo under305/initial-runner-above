@@ -1,23 +1,61 @@
 <div class="row">
     {{#each images}}
-        <pre>
-            
-        </pre>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-title d-flex justify-center-between align-items-center  ">
-                        <h4>{{title}} <a href="/" ><i class="fa fa-share-alt
-"></i> </a></h4>
-                        
-                    </div>
-                    <img class="rounded mx-auto d-block" width="100" height="auto" src="{{imageURL}}" alt="">
-                    <form action="/images/delete/{{_id}}?_method=DELETE" method="POST">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" class="btn btn-danger btn-block btn-small" >delete</button>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title d-flex justify-center-between align-items-center  ">
+                    <h4>{{title}} <a style="cursor: pointer;" data-toggle="modal" data-target="#{{_id}}share" ><i class="fa fa-share-alt"></i> </a></h4>
+                </div>
+                <img data-toggle="modal" data-target="#{{_id}}" style="cursor: pointer;"
+                    class="rounded mx-auto d-block" width="100" height="auto" src="{{imageURL}}" alt="">
+                <form action="/images/delete/{{_id}}?_method=DELETE" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger btn-block btn-small">delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="{{_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Imagen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img style="cursor: pointer;" class="rounded mx-auto d-block" width="100%" height="auto"
+                        src="{{imageURL}}" alt="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal for share -->
+    <div class="modal fade" id="{{_id}}share" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Share width</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/user/updatelist" method="POST">
+                        <input type="hidden" name="image_id" value="{{_id}}">
+                        <input type="text" name="username" placeholder="username"  class="form-control">
+                        <input type="submit" value="Share" class="btn btn-primary btn-block" >
                     </form>
                 </div>
             </div>
         </div>
+    </div>
     {{/each}}
 </div>

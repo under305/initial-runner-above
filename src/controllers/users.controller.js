@@ -1,5 +1,6 @@
 const usersCtrl = {};
 const md5 = require('md5');
+const passport = require('passport');
 const User = require('./../models/User');
 
 usersCtrl.renderSignUpForm = (req, res)=>{
@@ -50,12 +51,22 @@ usersCtrl.signUp = async (req, res)=>{
 usersCtrl.renderSignInForm = (req, res)=>{
     res.render('users/signin');
 }
-usersCtrl.signIn = (req, res)=>{
-    res.send('signIn');
-}
+usersCtrl.signIn = passport.authenticate('local',{
+    failureRedirect: '/users/signin',
+    successRedirect: '/images',
+    failureFlash: true
+})
 
 usersCtrl.logOut = (req, res)=>{
-    res.send('Logout');
+    req.logout();
+    req.flash('success_msg', "You're logged out");
+    res.redirect('/users/signin');
+}
+
+usersCtrl.updateList = (req, res)=>{
+    const { image_id, username } = req.body;
+    console.log(image_id);
+    res.send('Updated');
 }
 
 module.exports = usersCtrl;
