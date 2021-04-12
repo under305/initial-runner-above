@@ -63,10 +63,23 @@ usersCtrl.logOut = (req, res)=>{
     res.redirect('/users/signin');
 }
 
-usersCtrl.updateList = (req, res)=>{
+usersCtrl.updateList = async(req, res)=>{
     const { image_id, username } = req.body;
-    console.log(image_id);
-    res.send('Updated');
+    //console.log(image_id);
+    const actualUser = await User.findOne({name: username});
+    if(actualUser){
+        let temporalArray = actualUser.receivedImages;
+        temporalArray.push(image_id);
+        console.log(actualUser.id);
+        await User.findByIdAndUpdate(actualUser.id, {
+            receivedImages: temporalArray
+        });
+        req.flash('success_msg', "Image shared");
+    }else{
+        //console.log('Usuario no encontrado');
+        req.flash('error_msg', "Couldn't share");
+    }
+    res.redirect('/images');
 }
 
 module.exports = usersCtrl;
