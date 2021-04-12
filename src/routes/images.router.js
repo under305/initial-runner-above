@@ -11,8 +11,8 @@ const {
 /**
  * *Set new Image
  */
-router.get('/images/add', renderImagesForm);
-router.post('/images/add', createNewImage);
+router.get('/images/new-image', renderImagesForm);
+router.post('/images/new-image', createNewImage);
 
 /**
  * *GetAllImages
