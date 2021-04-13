@@ -18,6 +18,6 @@ router.post('/users/signin/', signIn);
 
 router.get('/users/logout', logOut);
 
-router.post('/user/updatelist',updateList);
+router.post('/user/updatelist', updateList);
 
 module.exports = router;
