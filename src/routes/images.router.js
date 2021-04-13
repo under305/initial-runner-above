@@ -5,7 +5,8 @@ const {
     createNewImage, 
     renderImages, 
     renderDeleteForm, 
-    deleteImage 
+    deleteImage ,
+    showReceivedImages
 } = require('../controllers/images.controller');
 const { isAuthenticated } = require('./../helpers/auth');
 
@@ -25,6 +26,8 @@ router.get('/images', isAuthenticated,renderImages);
  */
 //router.get('/images/delete/:id', renderDeleteForm);
 router.delete('/images/delete/:id', isAuthenticated, deleteImage);
+
+router.get('/images/received-images', isAuthenticated, showReceivedImages);
 
 
 module.exports = router;
